@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs         # exclude a few common directories in the
+  | \.git          # root of the project
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.flake8]
+ignore = "E203, E266, E501, W503"
+max-line-length = 80
+max-complexity = 18
+select = "B,C,E,F,W,T4,B9"
+
+[tool.poetry]
+name = "hansen"
+version = "0.1.0"
+description = ""
+authors = ["Likai Ren <lebsfi@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9.1"
+pytest = "7.4.2"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.1.0"
+black = "^23.9.1"
+pre-commit = "^3.4.0"
+pytest-html = "^4.0.1"
+pytest-cov = "^4.1.0"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".",
+]
+addopts = "--cov --cov-report term-missing --cov-report html -v -s --html=results/pytest/report.html"
+testpaths = "tests"
